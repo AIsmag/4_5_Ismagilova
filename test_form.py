@@ -1,5 +1,5 @@
 from selene.support.shared import browser
-from selene import be, have
+from selene import be, have, command
 import os
 
 '''
@@ -23,6 +23,7 @@ def test_validation_form(open_website):
     browser.element('[for="hobbies-checkbox-2"]').click()
     browser.element('#uploadPicture').send_keys(os.getcwd() + '/picture.jpg')
     browser.element('[id="currentAddress"]').type('Чехова 8')
+    browser.element('#fixedban').perform(command.js.remove)
     browser.element('#react-select-3-input').type('Haryana').press_enter()
     browser.element('#react-select-4-input').type('Karnal').press_enter()
     browser.element('[id="submit"]').click()
