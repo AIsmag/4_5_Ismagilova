@@ -8,11 +8,13 @@ import os
 
 
 def test_validation_form(open_website):
+    browser.execute_script('document.querySelector("footer").remove()')
+    browser.execute_script('document.querySelector("#fixedban").remove()')
+    browser.execute_script('document.querySelector("#RightSide_Advertisement").remove()')
     browser.element('[id="firstName"]').type('Иван')
     browser.element('[id="lastName"]').type('Иванов')
     browser.element('[id="userEmail"]').type('ivan@ivanov.ru')
     browser.element('[for="gender-radio-1"]').click()
-    browser.execute_script("window.scrollBy(0, 500)")
     browser.element('[id="userNumber"]').type('9152635845')
     browser.element('[id="dateOfBirthInput"]').click()
     browser.element('[class="react-datepicker__month-select"]').click()
@@ -23,7 +25,6 @@ def test_validation_form(open_website):
     browser.element('#subjectsInput').type('eng').press_enter()
     browser.element('[for="hobbies-checkbox-2"]').click()
     browser.element('#uploadPicture').send_keys(os.getcwd() + '/picture.jpg')
-    browser.element('#fixedban').perform(command.js.remove)
     browser.element('[id="currentAddress"]').type('Чехова 8')
     browser.element('#react-select-3-input').type('Haryana').press_enter()
     browser.element('#react-select-4-input').type('Karnal').press_enter()
